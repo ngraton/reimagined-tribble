@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "buddypet",
+  "version": "${version}",
+  "name": "Buddy Pet Mod",
+  "description": "Adds a cute pet buddy that follows you around! Tame it with cookies!",
+  "authors": [
+    "Dad and Son Team"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/buddypet/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.petmod.BuddyPetMod"
+    ],
+    "client": [
+      "com.petmod.client.BuddyPetModClient"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.4",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
