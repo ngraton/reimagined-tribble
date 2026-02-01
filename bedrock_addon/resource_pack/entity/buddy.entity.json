@@ -1,0 +1,22 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "buddypet:buddy",
+            "materials": {
+                "default": "entity_alphatest"
+            },
+            "textures": {
+                "default": "textures/entity/buddy"
+            },
+            "geometry": {
+                "default": "geometry.buddy"
+            },
+            "render_controllers": ["controller.render.default"],
+            "spawn_egg": {
+                "base_color": "#7DD3FC",
+                "overlay_color": "#F9A8D4"
+            }
+        }
+    }
+}

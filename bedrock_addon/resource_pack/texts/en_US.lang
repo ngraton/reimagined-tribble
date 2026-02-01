@@ -1,0 +1,3 @@
+entity.buddypet:buddy.name=Buddy
+item.spawn_egg.entity.buddypet:buddy.name=Spawn Buddy
+action.interact.sit=Sit/Stand

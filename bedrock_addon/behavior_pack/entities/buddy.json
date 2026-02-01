@@ -1,0 +1,136 @@
+{
+    "format_version": "1.20.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "buddypet:buddy",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false
+        },
+        "component_groups": {
+            "wild": {
+                "minecraft:behavior.random_stroll": {
+                    "priority": 6,
+                    "speed_multiplier": 1.0
+                }
+            },
+            "tamed": {
+                "minecraft:is_tamed": {},
+                "minecraft:behavior.follow_owner": {
+                    "priority": 4,
+                    "speed_multiplier": 1.0,
+                    "start_distance": 10,
+                    "stop_distance": 2
+                }
+            },
+            "sitting": {
+                "minecraft:is_sitting": {},
+                "minecraft:behavior.stay_near_noteblock": {
+                    "priority": 1
+                }
+            }
+        },
+        "components": {
+            "minecraft:type_family": {
+                "family": ["buddy", "mob"]
+            },
+            "minecraft:health": {
+                "value": 20,
+                "max": 20
+            },
+            "minecraft:movement": {
+                "value": 0.3
+            },
+            "minecraft:movement.basic": {},
+            "minecraft:jump.static": {},
+            "minecraft:navigation.walk": {
+                "can_path_over_water": true,
+                "avoid_water": true,
+                "avoid_damage_blocks": true
+            },
+            "minecraft:collision_box": {
+                "width": 0.6,
+                "height": 0.8
+            },
+            "minecraft:physics": {},
+            "minecraft:pushable": {
+                "is_pushable": true,
+                "is_pushable_by_piston": true
+            },
+            "minecraft:tameable": {
+                "probability": 1.0,
+                "tame_items": ["cookie"],
+                "tame_event": {
+                    "event": "on_tame",
+                    "target": "self"
+                }
+            },
+            "minecraft:sittable": {},
+            "minecraft:behavior.float": {
+                "priority": 0
+            },
+            "minecraft:behavior.look_at_player": {
+                "priority": 7,
+                "look_distance": 8.0
+            },
+            "minecraft:behavior.random_look_around": {
+                "priority": 8
+            },
+            "minecraft:interact": {
+                "interactions": [
+                    {
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    { "test": "is_sneaking", "subject": "other", "value": false },
+                                    { "test": "is_family", "subject": "self", "value": "buddy" }
+                                ]
+                            },
+                            "event": "toggle_sitting",
+                            "target": "self"
+                        },
+                        "use_item": false,
+                        "interact_text": "action.interact.sit"
+                    }
+                ]
+            }
+        },
+        "events": {
+            "minecraft:entity_spawned": {
+                "add": {
+                    "component_groups": ["wild"]
+                }
+            },
+            "on_tame": {
+                "remove": {
+                    "component_groups": ["wild"]
+                },
+                "add": {
+                    "component_groups": ["tamed"]
+                }
+            },
+            "toggle_sitting": {
+                "sequence": [
+                    {
+                        "filters": {
+                            "test": "is_sitting",
+                            "value": false
+                        },
+                        "add": {
+                            "component_groups": ["sitting"]
+                        }
+                    },
+                    {
+                        "filters": {
+                            "test": "is_sitting",
+                            "value": true
+                        },
+                        "remove": {
+                            "component_groups": ["sitting"]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
